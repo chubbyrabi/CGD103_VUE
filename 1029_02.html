@@ -8,27 +8,30 @@
 </head>
 <body>
     <div id="app">
-        <h1>{{count}}</h1>
+        <!-- <h1>{{typeof count}}</h1> -->
+        <h1 data-mode="dark">{{title}}</h1>
+        <h6>${{price}}</h6>
+        <div>
+            <button @click="count -= 1">-</button>
+            <!-- <input type="number" v-model="count"> -->
+            <input type="text" v-model.number="count">
+            <button @click="count += 1">+</button>
+        </div>
+        <button>Add</button>
+        {{count}}
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
     <script>
-        // 寫法一
-        // new Vue({
-        //     data:{
-        //         count: 1,
-        //     },
-        //     el: '#app';
-        // });
-
-        //寫法二
-        const App = new Vue({
-            data:{
-                count: 1,
-            },
-        });
-        App.$mount('#app');
-        // 宣告給一個變數，後續繼續找它，const>常數
+        Vue.createApp({
+            data(){
+                return{
+                    title:'商品',
+                    price:100,
+                    count: 1,
+                }
+            }
+        }).mount('#app'); 
     </script>
 </body>
 </html>
