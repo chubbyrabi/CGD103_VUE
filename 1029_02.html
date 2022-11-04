@@ -12,13 +12,13 @@
         <h1 data-mode="dark">{{title}}</h1>
         <h6>${{price}}</h6>
         <div>
+            <!-- <input type="text" v-model.number="count"> -->
             <button @click="count -= 1">-</button>
-            <!-- <input type="number" v-model="count"> -->
-            <input type="text" v-model.number="count">
+            <input type="number" v-model="count">
             <button @click="count += 1">+</button>
         </div>
         <button>Add</button>
-        {{count}}
+        <p>總計：{{count}}</p>
     </div>
 
     <script src="https://unpkg.com/vue@next"></script>
@@ -29,9 +29,26 @@
                     title:'商品',
                     price:100,
                     count: 1,
+                    total: 0,
+                }
+            },
+            methods:{
+                addCount(){
+                    this.count += 1
+                    // this.total = this.count * this.price
+                    this.sumTotal()
+                },
+                reduceCount(){
+                    if(this.count <= 0) return
+                    this.count -= 1
+                    // this.total = this.count * this.price
+                    this.sumTotal()
+                },
+                sumTotal(){
+                    this.total = this.count * this.price
                 }
             }
-        }).mount('#app'); 
+        }).mount('#app');
     </script>
 </body>
 </html>
