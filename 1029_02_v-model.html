@@ -8,47 +8,48 @@
 </head>
 <body>
     <div id="app">
-        <!-- <h1>{{typeof count}}</h1> -->
-        <h1 data-mode="dark">{{title}}</h1>
-        <h6>${{price}}</h6>
+        <p>{{title}}</p>
+        <p>{{price}}元</p>
         <div>
-            <!-- <input type="text" v-model.number="count"> -->
-            <button @click="count -= 1">-</button>
-            <input type="number" v-model="count">
-            <button @click="count += 1">+</button>
+            <button @click="reduceCount">-</button>
+            <input type="text" v-model.number="count">
+            <button @click="addCount">+</button>
         </div>
+        <br>
         <button>Add</button>
-        <p>總計：{{count}}</p>
+        <p>總計：{{total}} 元</p>
     </div>
-
     <script src="https://unpkg.com/vue@next"></script>
     <script>
         Vue.createApp({
             data(){
-                return{
-                    title:'商品',
-                    price:100,
-                    count: 1,
+                return {
+                    title: '商品項目',
+                    price: 100,
+                    count: 0,
                     total: 0,
                 }
             },
             methods:{
                 addCount(){
-                    this.count += 1
+                    this.count += 1;
                     // this.total = this.count * this.price
-                    this.sumTotal()
+                    // 重複執行的動作寫成 function
+                    this.sumTotal();
                 },
                 reduceCount(){
-                    if(this.count <= 0) return
-                    this.count -= 1
+                    if(this.count <= 0) return;
+                    // 數量小於 0 直接 return，就不會繼續扣成負值了
+                    this.count -= 1;
                     // this.total = this.count * this.price
-                    this.sumTotal()
+                    // 重複執行的動作寫成 function
+                    this.sumTotal();
                 },
                 sumTotal(){
-                    this.total = this.count * this.price
+                    this.total = this.count * this.price;
                 }
             }
-        }).mount('#app');
+        }).mount("#app");
     </script>
 </body>
 </html>

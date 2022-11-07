@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1</title>
+    <title>product</title>
 </head>
 <body>
     <div id="app">
@@ -12,20 +12,18 @@
         <div class="pagination">
             <button v-for="page in 10" :key="page">{{page}}</button>
         </div>
-        <!-- 沒反應 -->
         <header>
             search: <input type="text" v-model="search"><br>
             篩選出大於: <input type="number" v-model="min">-<input type="number" v-model="max">$的商品
         </header>
-        <!-- 沒反應 -->
         <div v-if="load">loading...</div>
-        <p>總計：{{total}}元</p> 
+        <p>總計：{{total}}元</p>
         <div v-else class="productContainer">
             <div v-for="(item, index) in product" :key="item.id">
                 <p>{{item.title}}</p>
                 <img :src="item.image" v-bind:alt="item.title">
                 <p>{{item.price}}元</p>
-                <div>
+                <div style="white-space:nowrap;">
                     <button v-on:click="reduceCount(index)">-</button>
                     <input type="number" min="0" v-model="count[index]">
                     <button @click="addCount(index, 1)">+</button>
@@ -49,7 +47,8 @@
                     max: 0
                 }
             },
-            created() { //created: Vue實體被建立完
+            created() {
+                //created: Vue實體被建立完
                 this.getResource()
             },
             computed:{
@@ -66,13 +65,13 @@
                             return item.price < this.max
                         })
                     }
-                    if(this.search !== ''){ //篩選相符標題
+                    if(this.search !== ''){
+                        //篩選相符標題
                         cache =  cache.filter(item=>{
                             return item.title.includes(this.search)
                         })
                     }
                     return cache
-
 
 
                     // if(this.filter > 0){
@@ -89,11 +88,9 @@
                     // })
 
 
-
                     // if(this.search !=''){
                     //     console.log(this.search);
                     // }
-
 
 
                     // console.log(this.filter);
@@ -102,7 +99,8 @@
                     // return this.source
                 }
             },
-            mounted() { //mounted: 渲染完
+            mounted() {
+                //mounted: 渲染完
             },
             methods:{
                 // 可以帶參數
@@ -133,7 +131,7 @@
                     this.total = 0
                     // this.total += this.count[0] * this.product[0]['price']
                     // this.total += this.count[1] * this.product[1]['price']
-                    
+
                     for ( const countIndex in this.product) {
                         // if(!this.product[countIndex]['price']) return
                         this.total += this.count[countIndex] * this.product[countIndex]['price']
