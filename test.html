@@ -72,40 +72,33 @@
                         })
                     }
                     return cache
-
-
-
-                    // if(this.filter > 0){
-                    //     return this.source.filter(item=>{
-                    //         console.log(this.filter);
-                    //         return item.price > this.filter
-                    //     })
-
-
-                    // console.log(this.filter);
-                    // // [1,2,3].filter(num=>num!=0);
-                    // this.source.filter(item=>{
-                    //     console.log(item.price > this.filter);
-                    // })
-
-
-
-                    // if(this.search !=''){
-                    //     console.log(this.search);
-                    // }
-
-
-
-                    // console.log(this.filter);
-                    // console.log(this.search);
-                    // all
-                    // return this.source
-                }
-            },
-            mounted() { //mounted: 渲染完
-            },
+				},
+				total(){
+					if(this.product.length> 0){
+						let total = 0
+						for ( const countIndex in this.product) {
+							total += this.count[countIndex] * this.product[countIndex]['price']
+						}
+						return parseInt(total )
+					}else{
+						return 0
+					}
+				}
+			},
+			watch:{
+				//監聽data或computed
+				total: {
+					handler: function(newVal, oldVal) {
+						console.log(oldVal);
+						console.log(newVal);
+					},
+					deep: true
+				},
+			},
             methods:{
-                // 可以帶參數
+				parsePrice(price){
+					return `TWD ${price*33}`
+				},
                 getResource(){
                     this.load = true
                     fetch('https://fakestoreapi.com/products')
