@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>quick-start</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 雙括弧是模板語言，裡面放需要動態更變的"變項" -->
+        <!-- 變項內容後續可以修改，一般配合 JS 中的 data() 設置 -->
+        <h1>{{type = count}}</h1>
+        <p>{{name}} feel {{kind}}</p>
+        <div>{{talk ? '對吧':'不對'}}</div>
+        <div>{{array}}</div>
+        <div>{{obj}}</div>
+    </div>
+
+    <div id="app01">
+        <h1>{{count}}</h1>
+        <p>寫法01</p>
+    </div>
+
+    <div id="app02">
+        <h1>{{count}}</h1>
+        <p>寫法02</p>
+    </div>
+
+    <!-- 使用Vue3：引入下面這個VUE函式庫，建議放在body中(html載入後才執行) -->
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <script>
+        // console.log(Vue)
+        // 新增一個應用 application → 建立 Vue 實體 (instance)
+        Vue.createApp({
+            data(){
+                return{
+                    count: 111,
+                    name: '🦝',
+                    kind: '😀',
+                    talk: true,
+                    array: [1,2,3],
+                    obj:{test: '123'},
+
+                }
+            }
+        }).mount('#app');
+        // 並掛載 (mount) 在網頁節點上 (id='#app')
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        //定義物件
+        // const App = {}
+        // Vue.createApp(App).mount("#app")
+
+        // data 資料函式 → 用來存在Vue實體中的狀態或資料(state)
+        // 注意：data 函式中要`return`一個物件(object)
+
+        // 寫法一
+        new Vue({
+            data:{
+                count: 222,
+            },
+            el: '#app01',
+        });
+
+        //寫法二
+        const App = new Vue({
+            data:{
+                count: 333,
+            },
+        });
+        App.$mount('#app02');
+        // 宣告給一個變數，後續繼續找它，const → 常數
+    </script>
+
+</body>
+</html>
