@@ -7,21 +7,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1112_ToDoList</title>
 </head>
-<!-- 
+<!--
     1.加 css
     2.做成 checkbox
+    3.可以全選/複選刪除
  -->
 <body>
     <div id="app">
-        <input type="text" placeholder="新增待辦事項"
-               @keyup.enter="addList(newItem)" v-model="newItem">
+        <input type="text" placeholder="新增待辦事項" @keyup.enter="addList(newItem)" v-model="newItem">
         <p>事項列表</p>
-        <ul >
+        <ul>
             <li v-for="item in list">
                 {{item.content}}
                 -- <a href="#" @click="removeList(item)">完成</a>
             </li>
         </ul>
+        <button @click="removeAll">清除所有</button>
     </div>
     <script src="https://unpkg.com/vue@next"></script>
     <script>
@@ -43,10 +44,14 @@
                     this.list.push({
                         content: item,
                     })
-                    value = '';
+                    // 清除輸入框裡的資料
+                    this.newItem = '';
                 },
                 removeList(item){
                     this.list.splice(this.list.indexOf(item), 1);
+                },
+                removeAll(){
+                    this.list = [];
                 }
             }
         }).mount("#app")
