@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1112_ToDoList</title>
+</head>
+<!-- 
+    1.加 css
+    2.做成 checkbox
+ -->
+<body>
+    <div id="app">
+        <input type="text" placeholder="新增待辦事項"
+               @keyup.enter="addList(newItem)" v-model="newItem">
+        <p>事項列表</p>
+        <ul >
+            <li v-for="item in list">
+                {{item.content}}
+                -- <a href="#" @click="removeList(item)">完成</a>
+            </li>
+        </ul>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        Vue.createApp({
+            data(){
+                return {
+                    list:[],
+                    newItem:'',
+                }
+            },
+            methods:{
+                addList(item){
+                    // trim 可以消除前後空白
+                    var value = this.newItem.trim();
+                    // 若 value 的值空白，return 終止
+                    if (!value){
+                        return;
+                    }
+                    this.list.push({
+                        content: item,
+                    })
+                    value = '';
+                },
+                removeList(item){
+                    this.list.splice(this.list.indexOf(item), 1);
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+</html>
