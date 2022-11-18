@@ -1,0 +1,226 @@
+/* ----- banner ----- */
+.banner{
+    position: relative;
+    max-width: 1500px;
+    margin: auto;
+}
+.banner ul li{
+    display: none;
+}
+.banner-slogan{
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    margin-right: 10%;
+}
+.banner-slogan img{
+    display: block;
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+
+
+/* ----- breadcrumb ----- */
+.breadcrumb{
+    padding: 10px;
+    max-width: 1380px;
+    margin: 5px auto;
+}
+.breadcrumb ol{
+    text-align: left;
+}
+.breadcrumb li{
+    display: inline-block;
+}
+.breadcrumb li:last-child a{
+    font-weight: 600;
+}
+.breadcrumb li:not(:last-child)::after{
+    content: "/ ";
+    padding: 5px;
+}
+
+
+
+/* ----- product ----- */
+.product{
+    max-width: 1400px;
+    margin: 0 auto 100px;
+}
+.product-class{
+    display: none;
+}
+.product-class{
+    color: var(--clr-color);
+}
+.series-list{
+    display: none;
+}
+.item{
+    display: block;
+    box-sizing: border-box;
+    margin: 15px;
+    overflow: hidden;
+}
+.list-series, .banner li{
+    display: none;
+}
+.series-eraser.open, .series-correctionTape.open, .series-pencil.open, .series-graph.open{
+    display: block;
+}
+
+
+
+/* ----- < 768 ----- */
+@media screen and (max-width: 767px){
+    .series-all-lg.open{
+        display: block;
+    }
+}
+
+/* ----- > 768 ----- */
+@media screen and (min-width: 768px){
+    .banner-slogan{
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .product{
+        margin: 0 auto 150px;
+    }
+    .series-all.open{
+        display: block;
+    }
+}
+
+/* ----- < 1023 ----- */
+@media screen and (max-width: 1023px){
+    /* ----- product ----- */
+    .series-name-lg{
+        width: fit-content;
+        font-family: 'NeverMind','Noto Sans TC';
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 1em;
+        text-align: center;
+        color: var(--clr-color);
+        margin: 20px auto 5px;
+        padding: 5px;
+        border-bottom: 2px solid #00ADBB;
+    }
+    .product-list{
+        padding: 0 15px;
+    }
+}
+
+/* ----- > 1024 ----- */
+@media screen and (min-width: 1024px){
+    /* ----- product ----- */
+    .product{
+        margin: 0 auto 200px;
+    }
+    .product-list{
+        display: inline-block;
+        vertical-align: top;
+        width: 77.5%;
+        margin-top: 48px;
+    }
+    .product-class{
+        display: inline-block;
+        vertical-align: top;
+        width: calc(22.5% - 65px);
+        margin: 0 50px 15px 15px;
+    }
+    .product-class h2{
+        margin: 15px 0;
+    }
+    .class-series>li{
+        border-top: 1px solid #B3B3B3;
+    }
+    .class-series>li:last-child{
+        border-bottom: 1px solid #B3B3B3;
+    }
+    .series-name{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        padding: 15px;
+    }
+    .class-series>li:not(:first-child) .series-name.on{
+        color: var(--hvr-color);
+        background-color: #F2F2F2;
+    }
+    .series-list{
+        padding: 15px 0;
+    }
+    .series-list li{
+        margin: 0 15px;
+    }
+    .plus-minus{
+        position: relative;
+        width: 13px;
+        height: 13px;
+    }
+    .plus-minus span{
+        position: absolute;
+        top: 6px;
+        width: 13px;
+        height: 1.4px;
+        background-color: #00ADBB;
+        transition: 0.5s;
+    }
+    .plus-minus span:first-child{
+        transform: rotate(0deg);
+    }
+    .js-click.on .plus-minus span:first-child{
+        transform: rotate(180deg);
+        transition: var(--hvr-transition);
+    }
+    .plus-minus span:last-child{
+        transform: rotate(90deg);
+    }
+    .js-click.on .plus-minus span:last-child{
+        transform: rotate(-180deg);
+        transition: var(--hvr-transition);
+    }
+}
+
+/* ----- > 1200 ----- */
+@media screen and (min-width: 1200px){
+    /* ----- 通用設定 ----- */
+    /* ----- banner ----- */
+    .breadcrumb a:hover{
+        color: var(--hvr-color);
+    }
+    /* ----- product ----- */
+    figure img:hover{
+        transform: var(--hvr-scale);
+        transition: var(--hvr-transition);
+    }
+    .series-name:hover{
+        color: var(--hvr-color);
+        background-color: #F2F2F2;
+    }
+    .series-list li:hover a{
+        font-weight: 500;
+        color: var(--hvr-color);
+        border-bottom: 1px solid #B3B3B3;
+        transition: 0.15s;
+    }
+}
+
+/* ----- > 1400 ----- */
+@media screen and (min-width: 1400px){
+    /* ----- banner ----- */
+    .banner-slogan{
+        left: calc(50% - 560px)
+    }
+    /* ----- product ----- */
+    .product-class{
+        width: 250px;
+    }
+    .product-list{
+        width: calc(100% - 315px);
+    }
+}
