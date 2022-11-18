@@ -53,20 +53,26 @@
     .list-item:not(:last-child){
         margin-bottom: 25px;
     }
+    #down,#up{
+        position: absolute;
+        bottom: 3rem;
+        left: 50%;
+    }
+    
 </style>
 <body>
     <div id="app">
         <section id="section1" ref="section1">
             1
             <!-- <button @click="scrollDown">👇</button> -->
-            <button @click="scrollBlock(2)">👇</button>
+            <button id="down" @click="scrollBlock(2)">👇</button>
         </section>
         <section id="section2" ref="section2">
             2
         </section>
         <section id="section3" ref="section3">
             3
-            <button @click="scrollTo">👆</button>
+            <button id="up" @click="scrollTo">👆</button>
         </section>
         <div class="blockBtnBox">
             <button v-for="item in 3" @click="scrollBlock(item)">
